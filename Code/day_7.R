@@ -1,8 +1,7 @@
 #Adventofcode Day 7
 
 crab_subs <-
-  read.table(
-    "C:/Users/lagij/Desktop/adventofcode/input_7.txt",
+  read.table(url("https://raw.githubusercontent.com/czycs/adventofcode_2021/main/Input/input_7.txt"),
     sep = ",",
     quote = "\"",
     comment.char = ""
