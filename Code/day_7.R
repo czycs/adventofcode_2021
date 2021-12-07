@@ -11,6 +11,7 @@ crab_subs_vec <- as.numeric(crab_subs[1, ])
 #plot(density(crab_subs_vec))
 
 testinput <- c(16, 1, 2, 0, 4, 2, 7, 1, 2, 14)
+
 #Part1
 median(testinput)
 median(crab_subs_vec)
@@ -19,7 +20,7 @@ median(crab_subs_vec)
 #Part2
 fuel_usage <- function(vec) {
   least_fuel = 1000000000
-  for (z in min(crab_subs_vec):max(crab_subs_vec)) {
+  for (z in min(vec):max(vec)) {
     fuel = 0
     
     for (i in vec) {
