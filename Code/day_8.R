@@ -25,10 +25,7 @@ result1<-counter(df_char_length)
 
 #Part2
 
-test<-c("acedgfb", "cdfbe", "gcdfa", "fbcad", "dab", "cefabd", "cdfgeb", "eafb", "cagedb", "ab"
-         
-        )
-
+#Create Map from first part of input
 decoder <- function(vec) {
   #solved==FALSE
   count<-c()
@@ -71,12 +68,8 @@ decoder <- function(vec) {
  return(map)
 }
 
-outputtest<-c("cdfeb" ,"fcadb", "cdfeb", "cdbaf")
-outtest<-strsplit(outputtest[1], "")
 
-maptest<-decoder(test)
-
-
+#tranlate the the 4 digits
 to_number<-function(map,vec){
   
   output<-c()
@@ -126,13 +119,9 @@ to_number<-function(map,vec){
   
 }
 
-to_number(maptest,outputtest)
-testve<-c("efbag", "de", "adcgf", "fgcdea", "gfdabc" ,"daec", "fdcgbe", "edg", "fgead", "acbgdfe" )
-outoutouto<-c( "de", "bgfae", "decafbg", "gefabcd")
-decoder(testve)
 
-to_number(decoder(testve),outoutouto)
 
+#solve for every line in the input
 solver<-function(df){
   out_vector<-c()
   scrambled<-df[,1]
@@ -148,6 +137,7 @@ solver<-function(df){
   }
   return(out_vector)
 }
+
   
 result2<-sum(solver(seven_segment))
 
