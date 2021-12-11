@@ -9,7 +9,7 @@ octo_mat <-
     comment.char = "",
     colClasses = 'character'
   )
-library(ggplot)
+library(ggplot2)
 library(gganimate)
 library(purrr)
 library(reshape2)
@@ -128,7 +128,26 @@ output<-all_flashes(boundmatrix)
 melted<-melt(output)
 melted_list<-lapply(output, melt)
 
-ggplot(melted[1600:1700,], aes(x = Var2, y = Var1, fill = value)) + geom_tile() +
+melted_df<-do.call(rbind.data.frame, melted_list)
+melted_df$step<-rep(c(1:382),each=100)
+
+graph1<-ggplot(melted_df, aes(x = Var2, y = Var1, fill = value)) +
+  geom_tile() +
   scale_fill_manual(values = c( "black","white")) +
   theme_bw() +
+  transition_states(step,
+                    transition_length = 2,
+                    state_length = 2)+
   theme(legend.position = "none")
+  
+graph1.animation= graph1+
+  transition_time(step)+
+  labs(subtitle = "Step: {frame_time}") +
+  shadow_wake(wake_length = 0.1)+
+  enter_fade() + 
+  exit_shrink()
+
+animate(graph1.animation, height = 500, width = 800, fps = 25, duration = 25,
+        end_pause = 50, res = 100)
+anim_save("graph.gif")
+
