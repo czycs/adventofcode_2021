@@ -12,10 +12,6 @@ syntax_errror_input <-
 library("tidyverse")
 library(stringi)
 
-#nchar(syntax_errror_input[2,])
-#newdf<-Binary_Diagnostic$splits
-
-
 
 check_line <- function(string) {
   #remove good pairs(goodpairs==(),[],{},<>)
