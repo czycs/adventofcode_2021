@@ -9,7 +9,10 @@ octo_mat <-
     comment.char = "",
     colClasses = 'character'
   )
-
+library(ggplot)
+library(gganimate)
+library(purrr)
+library(reshape2)
 
 split <- strsplit(octo_mat[, 1], "")
 
@@ -72,6 +75,7 @@ all_flashes <- function(df) {
   flash_count <- 0
   steps<-0
   all_flashed<-FALSE
+  newlist<-list()
   while(all_flashed==FALSE) {
     steps<-steps+1
     seen_matrix <- matrix(rep(FALSE, 144), ncol = 12)
@@ -105,14 +109,26 @@ all_flashes <- function(df) {
         
       }
     }
-    
+    tru_false_mat<-df[2:11,2:11]
+    tru_false_mat<-(tru_false_mat>9)
+    newlist[[steps]]<-tru_false_mat
     if(sum(seen_matrix[2:11,2:11])==100){
       all_flashed<-TRUE
     }
+    
     df[df>=10]<-0
+    
   }
-  return(steps)
+  print(steps)
+  return(newlist)
 }
 
-all_flashes(boundmatrix)
+output<-all_flashes(boundmatrix)
 
+melted<-melt(output)
+melted_list<-lapply(output, melt)
+
+ggplot(melted[1600:1700,], aes(x = Var2, y = Var1, fill = value)) + geom_tile() +
+  scale_fill_manual(values = c( "black","white")) +
+  theme_bw() +
+  theme(legend.position = "none")
