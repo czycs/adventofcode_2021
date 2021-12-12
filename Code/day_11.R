@@ -149,5 +149,5 @@ graph1.animation= graph1+
 
 animate(graph1.animation, height = 500, width = 800, fps = 25, duration = 25,
         end_pause = 50, res = 100)
-anim_save("graph.gif")
+anim_save("graph.gif",graph1)
 
