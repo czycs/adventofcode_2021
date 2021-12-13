@@ -86,7 +86,11 @@ fold_all<-function(m,df){
   }
   return(m)
 }
-result2<-fold_all(mat,folds)
+result2<-result2==1
+result2<-result2[nrow(result2):1,]
+library(ggplot2)
+library(reshape2)
 
-
-
+melted <- melt(result2)
+ggplot(melted, aes(x = Var2, y = Var1, fill = value)) + geom_tile() +
+  scale_fill_manual(values = c("white", "black"))
