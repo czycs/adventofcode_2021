@@ -92,4 +92,5 @@ library(reshape2)
 
 melted <- melt(result2)
 ggplot(melted, aes(x = Var2, y = Var1, fill = value)) + geom_tile() +
-  scale_fill_manual(values = c("white", "black"))
+  scale_fill_manual(values = c("white", "black"))+
+  coord_fixed(ratio = 1, xlim = NULL, ylim = NULL, expand = TRUE, clip = "on")
