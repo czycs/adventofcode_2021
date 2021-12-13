@@ -73,8 +73,6 @@ folding <- function(m, folding_line) {
 
 folding(mat, folds[1, ])
 #Part2
-newmat<-folding(mat, folds[1, ])
-folding(newmat,folds[2,])
 
 fold_all<-function(m,df){
   row<-0
@@ -86,6 +84,7 @@ fold_all<-function(m,df){
   }
   return(m)
 }
+result2<-fold_all(mat,folds)
 result2<-result2==1
 result2<-result2[nrow(result2):1,]
 library(ggplot2)
