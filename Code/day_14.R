@@ -46,7 +46,7 @@ poly_func <- function(rules, line, times) {
   return(table(current_line))
 }
 
-result<-poly_func(polymerization_rules, polymerization_line, 12)
+result<-poly_func(polymerization_rules, polymerization_line, 10)
 
 
 #Part2
