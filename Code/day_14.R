@@ -46,7 +46,8 @@ poly_func <- function(rules, line, times) {
   return(table(current_line))
 }
 
-poly_func(polymerization_rules, polymerization_line, 1)
+result<-poly_func(polymerization_rules, polymerization_line, 12)
+
 
 #Part2
 #Idea:pair is not unique ex:NN->NC,CN
