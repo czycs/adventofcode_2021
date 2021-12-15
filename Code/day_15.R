@@ -182,11 +182,34 @@ dijkstra<-function(mat,start){
 
 result1<-dijkstra(dij,1)
 
-ans <- function(grid) {
-  g <- make_lattice(c(nrow(grid), ncol(grid))) %>% 
+ans <- function(mat) {
+  gitter <- make_lattice(c(nrow(mat), ncol(mat))) %>% 
     as.directed(mode = 'mutual')
-  E(g)$weight <- grid[get.edgelist(g)[, 2]]
+  E(gitter)$weight <- mat[get.edgelist(gitter)[, 2]]
   
-  distances(g, 1, nrow(grid) * ncol(grid), 'out')
+  distances(gitter, 1, nrow(mat) * ncol(mat), 'out')
 }
 ans(dij)
+
+##Part2
+make_bigger_grid<-function(mat){
+  piece <- mat
+  row_ex <- mat
+  
+  for (i in 1:4) {
+    piece <- (piece %% 9) + 1
+    row_ex <- rbind(row_ex, piece)
+  }
+  
+  piece <- row_ex
+  newdf <- row_ex
+  for (i in 1:4) {
+    piece <- (piece %% 9) + 1
+    newdf <- cbind(newdf, piece)
+  }
+  
+  return(newdf)
+}
+big_grid<-make_bigger_grid(dij)
+
+ans(big_grid)
